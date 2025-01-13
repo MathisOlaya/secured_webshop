@@ -1,7 +1,7 @@
-document.getElementById('submitLogin').addEventListener('click', () => {
+document.getElementById('submitSignup').addEventListener('click', () => {
     //get input value
-    const username = document.getElementById('usernameInput');
-    const password = document.getElementById('passwordInput');
+    const username = document.getElementById('usernameInput').value;
+    const password = document.getElementById('passwordInput').value;
 
     if(username === '' || password === ''){
         alert("Un des deux champs est nul. Réessayer");
