@@ -18,7 +18,7 @@ db.connect((err) => {
 });
 
 async function getSignUp(req, res) {
-  res.send("User: Sarah Test");
+  res.send("Bienvenu(e) " + req.params.username);
 }
 
 async function postSignUp(req, res) {
