@@ -27,6 +27,8 @@ document.getElementById("submitLogin").addEventListener("click", async () => {
     if (data.ok) {
       //redirect to user page
       window.location.href = `/user/${username}`;
+    } else {
+      console.error(data.message);
     }
   } catch {}
 });

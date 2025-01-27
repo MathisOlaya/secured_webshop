@@ -50,7 +50,7 @@ async function postLogin(req, res) {
     }
 
     if (resultat.length < 1) {
-      return res.status(500).json({
+      return res.status(400).json({
         message: "Aucun utilisateur trouvé avec ce nom",
       });
     }
@@ -58,7 +58,7 @@ async function postLogin(req, res) {
     const db_password_hash = resultat[0].password_hash;
 
     if (password !== db_password_hash) {
-      return res.status(500).json({
+      return res.status(400).json({
         message: "Le mot de passe ne correspond pas",
         error: err,
       });
