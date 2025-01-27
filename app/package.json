@@ -7,7 +7,9 @@
     "start": "nodemon server.js -L"
   },
   "dependencies": {
+    "dotenv": "^16.4.7",
     "express": "^4.19.1",
+    "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.9.4",
     "nodemon": "^3.1.0"
   }
