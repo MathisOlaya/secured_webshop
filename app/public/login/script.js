@@ -22,13 +22,18 @@ document.getElementById("submitLogin").addEventListener("click", async () => {
     const response = await fetch("/user/login", options);
 
     //get result
-    const data = await response.json();
+    if (response.status === 200) {
+      const data = await response.json();
 
-    if (data.ok) {
-      //redirect to user page
-      window.location.href = `/user/${username}`;
-    } else {
-      console.error(data.message);
+      if (data.ok) {
+        //save jwt token
+        localStorage.setItem("jwtToken", data.token);
+
+        //redirect to user page
+        window.location.href = `/user/${username}`;
+      } else {
+        console.error(data.message);
+      }
     }
   } catch {}
 });
