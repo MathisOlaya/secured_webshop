@@ -50,7 +50,6 @@ async function postLogin(req, res) {
     if (err) {
       return res.status(500).json({
         message: "Echec lors de la récupération du mot de passe",
-        error: err,
       });
     }
 
@@ -65,7 +64,6 @@ async function postLogin(req, res) {
     if (password !== db_password_hash) {
       return res.status(400).json({
         message: "Le mot de passe ne correspond pas",
-        error: err,
       });
     }
 
@@ -83,6 +81,20 @@ function createJwtToken(data) {
   };
 
   return (token = jwt.sign({ data }, secretKey, options));
+}
+
+function hash(input) {
+  const salt = generateRandomString(16);
+
+  const valueToHash = input + salt;
+  let result = "";
+
+  for (let letter = 0; letter < valueToHash.length; letter++) {
+    const asciiCode =
+      Math.floor(((valueToHash.charCodeAt(letter) % 54) * 6) / 2) % 256;
+    result += String.fromCharCode(asciiCode);
+  }
+  return result;
 }
 
 function generateRandomString(length) {
