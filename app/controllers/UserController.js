@@ -1,4 +1,9 @@
 const mysql = require("mysql2");
+const jwt = require("jsonwebtoken");
+const path = require("path");
+const dotenv = require("dotenv");
+
+dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
 //create connection with db
 const db = mysql.createConnection({
@@ -64,9 +69,20 @@ async function postLogin(req, res) {
       });
     }
 
-    //ok
-    return res.status(200).json({ message: "OK", ok: true });
+    //ok and create and return jwt token
+    const token = createJwtToken(username);
+    return res.status(200).json({ message: "OK", ok: true, token: token });
   });
+}
+
+function createJwtToken(data) {
+  const secretKey = process.env.JWT_SECRET_KEY;
+
+  const options = {
+    "expiresIn": "1h",
+  };
+
+  return (token = jwt.sign({ data }, secretKey, options));
 }
 
 module.exports = { getSignUp, postSignUp, postLogin };
