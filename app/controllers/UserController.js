@@ -85,4 +85,18 @@ function createJwtToken(data) {
   return (token = jwt.sign({ data }, secretKey, options));
 }
 
+function generateRandomString(length) {
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  let value = "";
+
+  for (let i = 0; i < length; i++) {
+    const randomLetter =
+      characters[Math.floor(Math.random() * characters.length)];
+    value += randomLetter;
+  }
+  return value;
+}
+
 module.exports = { getSignUp, postSignUp, postLogin };

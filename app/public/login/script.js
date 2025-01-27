@@ -3,8 +3,8 @@ document.getElementById("submitLogin").addEventListener("click", async () => {
   const username = document.getElementById("usernameInput").value;
   const password = document.getElementById("passwordInput").value;
 
-  if (username === "" || password === "") {
-    alert("Un des deux champs est nul. Réessayer");
+  if (username.trim() === "" || password.trim() === "") {
+    return alert("Un des deux champs est nul. Réessayer");
   }
 
   const options = {
@@ -31,9 +31,12 @@ document.getElementById("submitLogin").addEventListener("click", async () => {
 
         //redirect to user page
         window.location.href = `/user/${username}`;
-      } else {
-        console.error(data.message);
       }
+    } else {
+      const data = await response.json();
+      alert(data.message);
     }
-  } catch {}
+  } catch {
+    alert("Erreur lors de la connection au serveur");
+  }
 });
