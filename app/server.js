@@ -2,9 +2,11 @@ const express = require("express");
 const https = require("https");
 const fs = require("fs");
 const path = require("path");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
 
 //add certification file
 const options = {
