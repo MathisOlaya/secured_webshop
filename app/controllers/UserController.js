@@ -73,6 +73,10 @@ async function postLogin(req, res) {
   });
 }
 
+async function showHomePage(req, res) {
+  res.sendFile(path.join(__dirname, "../public/home/home.html"));
+}
+
 function createJwtToken(data) {
   const secretKey = process.env.JWT_SECRET_KEY;
 
