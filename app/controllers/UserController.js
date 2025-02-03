@@ -22,10 +22,6 @@ db.connect((err) => {
   }
 });
 
-async function getSignUp(req, res) {
-  res.send("Bienvenu(e) " + req.params.username);
-}
-
 async function postSignUp(req, res) {
   const { username, password } = req.body;
 
@@ -69,6 +65,11 @@ async function postLogin(req, res) {
 
     //ok and create and return jwt token
     const token = createJwtToken(username);
+    res.cookie("jwt_token", token, {
+      httpOnly: true, // Rendre le cookie inaccessible via JavaScript
+      secure: true, // Met à true si tu utilises HTTPS
+      maxAge: 3600000, // Durée de vie du cookie en millisecondes (1 heure ici)
+    });
     return res.status(200).json({ message: "OK", ok: true, token: token });
   });
 }
@@ -84,7 +85,7 @@ function createJwtToken(data) {
     "expiresIn": "1h",
   };
 
-  return (token = jwt.sign({ data }, secretKey, options));
+  return (token = jwt.sign({ username: data }, secretKey, options));
 }
 
 function hash(input) {
@@ -115,4 +116,4 @@ function generateRandomString(length) {
   return value;
 }
 
-module.exports = { getSignUp, postSignUp, postLogin };
+module.exports = { showHomePage, postSignUp, postLogin };
