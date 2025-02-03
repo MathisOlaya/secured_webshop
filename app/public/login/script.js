@@ -26,10 +26,7 @@ document.getElementById("submitLogin").addEventListener("click", async () => {
       const data = await response.json();
 
       if (data.ok) {
-        //save jwt token
-        localStorage.setItem("jwtToken", data.token);
-
-        //redirect to user page
+        //show home page
         window.location.href = `/user/${username}`;
       }
     } else {
