@@ -12,6 +12,9 @@ router.get("/:username/profile", verifyToken, controller.showProfilePage);
 //return user data to profile
 router.post("/:username/getUserData", verifyToken, controller.getUserData);
 
+//logout user
+router.get("/:username/logout", verifyToken, controller.logOut);
+
 //user signup nd login
 router.post("/signup", controller.postSignUp);
 router.post("/login", controller.postLogin);

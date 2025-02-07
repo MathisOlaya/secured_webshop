@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Home</title>
-    </head>
-    <body>
-        <div class="title">
-            <h1>Bienvenue <%= username %></h1>
-        </div>
-        <a href="<%= username %>/profile">Profile</a>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+  </head>
+  <body>
+    <div class="title">
+      <h1>Bienvenue <%= username %></h1>
+    </div>
+    <a href="<%= username %>/profile">Profile</a>
+    <button id="logoutHome">Se déconnecter</button>
+  </body>
+  <script>
+    const username = "<%= username %>";
+  </script>
+  <script type="module" src="/script/home.js"></script>
 </html>
