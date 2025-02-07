@@ -93,10 +93,21 @@ async function getUserData(req, res) {
     const { username } = req.body;
 
     if (!username) {
-        return res.json({ message: "No token provided" });
+        return res.json({ message: "No username provided" });
     }
 
-    const query = "SELECT * FROM T_USERS WHERE username = ?";
+    const query = "SELECT * FROM t_users WHERE username = ?";
+
+    db.query(query, [username], (err, result) => {
+        if (err) {
+            return res.status(500).json({
+                message: "Erreur lors de la création de l'utilisateur",
+                error: err,
+            });
+        }
+        const data = result[0];
+        return res.status(201).json({ message: "OK", ok: true, data });
+    });
 }
 
 async function showHomePage(req, res) {
