@@ -40,7 +40,14 @@ async function postSignUp(req, res) {
                     error: err,
                 });
             }
-            return res.status(201).json({ message: "OK" });
+            //if signup is ok, generate new token
+            const token = createJwtToken(username);
+            res.cookie("jwt_token", token, {
+                httpOnly: true, // Rendre le cookie inaccessible via JavaScript
+                secure: true, // Met à true si tu utilises HTTPS
+                maxAge: 3600000, // Durée de vie du cookie en millisecondes (1 heure ici)
+            });
+            return res.status(201).json({ message: "OK", ok: true });
         }
     );
 }
