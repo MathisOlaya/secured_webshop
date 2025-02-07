@@ -25,7 +25,7 @@ document.getElementById("submitSignup").addEventListener("click", async () => {
 
         //get result
         const data = await response.json();
-        console.log(data);
+
         if (data.ok) {
             window.location.href = `/user/${username}`;
         }
