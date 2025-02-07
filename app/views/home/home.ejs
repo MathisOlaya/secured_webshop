@@ -7,10 +7,8 @@
     </head>
     <body>
         <div class="title">
-            <h1>Bienvenue</h1>
-            <span id="usernameTitle"></span>
+            <h1>Bienvenue <%= username %></h1>
         </div>
-        <a id="linkToProfile">Profile</a>
-        <script type="module" src="/home/home.js"></script>
+        <a href="<%= username %>/profile">Profile</a>
     </body>
 </html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Profile</title>
+    </head>
+    <body>
+        <h1>Page profile</h1>
+        <div id="userData">
+            <div
+                style="display: flex; align-items: center; margin-bottom: 10px"
+            >
+                <label for="id" style="margin-right: 10px">Identifiant</label>
+                <p id="id" style="margin: 0"></p>
+            </div>
+
+            <div
+                style="display: flex; align-items: center; margin-bottom: 10px"
+            >
+                <label for="username" style="margin-right: 10px"
+                    >Nom d'utilisateur</label
+                >
+                <p id="username" style="margin: 0"><%= username %></p>
+            </div>
+
+            <div
+                style="display: flex; align-items: center; margin-bottom: 10px"
+            >
+                <label for="role" style="margin-right: 10px">Rôle</label>
+                <p id="role" style="margin: 0"></p>
+            </div>
+
+            <div
+                style="display: flex; align-items: center; margin-bottom: 10px"
+            >
+                <label for="createdAt" style="margin-right: 10px"
+                    >Date de création</label
+                >
+                <p id="createdAt" style="margin: 0"></p>
+            </div>
+        </div>
+        <a href="/user/<%= username %>">Home</a>
+        <script type="module" src="/script/profile.js"></script>
+    </body>
+</html>

@@ -100,11 +100,13 @@ async function getUserData(req, res) {
 }
 
 async function showHomePage(req, res) {
-    res.sendFile(path.join(__dirname, "../public/home/home.html"));
+    const username = req.params.username;
+    res.render("home/home", { username });
 }
 
 async function showProfilePage(req, res) {
-    res.sendFile(path.join(__dirname, "../public/profile/profile.html"));
+    const username = req.params.username;
+    res.render("profile/profile", { username });
 }
 
 function createJwtToken(data) {
