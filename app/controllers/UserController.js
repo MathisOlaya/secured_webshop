@@ -89,9 +89,22 @@ async function postLogin(req, res) {
         return res.status(200).json({ message: "OK", ok: true, token: token });
     });
 }
+async function getUserData(req, res) {
+    const { username } = req.body;
+
+    if (!username) {
+        return res.json({ message: "No token provided" });
+    }
+
+    const query = "SELECT * FROM T_USERS WHERE username = ?";
+}
 
 async function showHomePage(req, res) {
     res.sendFile(path.join(__dirname, "../public/home/home.html"));
+}
+
+async function showProfilePage(req, res) {
+    res.sendFile(path.join(__dirname, "../public/profile/profile.html"));
 }
 
 function createJwtToken(data) {
@@ -151,4 +164,10 @@ function generateRandomString(length) {
     return value;
 }
 
-module.exports = { showHomePage, postSignUp, postLogin };
+module.exports = {
+    showHomePage,
+    showProfilePage,
+    postSignUp,
+    postLogin,
+    getUserData,
+};

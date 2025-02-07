@@ -1,13 +1,13 @@
 const usernameSpan = document.getElementById("usernameTitle");
 
-//TODO : Afficher le nom de l'utilisateur dans le titre.
-//Get username from token
-function getUsernameFromURL() {
-    // Récupérer l'URL actuelle
-    const currentPath = window.location.pathname;
-    const pathSegments = currentPath.split("/"); // Découpe l'URL en segments
+const username = getUsernameFromURL();
 
-    return pathSegments[2]; // Ici, '123'
-}
+//Add href to profile page
+document.getElementById(
+    "linkToProfile"
+).href = `${window.location.href}/profile`;
+
+//Get username from URL
+import { getUsernameFromURL } from "../helpers.js";
 
 usernameSpan.innerText = getUsernameFromURL();
