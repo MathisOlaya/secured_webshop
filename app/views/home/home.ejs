@@ -4,13 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
+    <link rel="stylesheet" href="/css/custom/home.css" />
   </head>
   <body>
-    <div class="title">
-      <h1>Bienvenue <%= username %></h1>
+    <header>
+      <div class="title">
+        <h1>Bienvenue <%= username %> !</h1>
+      </div>
+      <div class="header-buttons">
+        <a href="<%= username %>/profile">Profile</a>
+        <button id="logoutHome">Se déconnecter</button>
     </div>
-    <a href="<%= username %>/profile">Profile</a>
-    <button id="logoutHome">Se déconnecter</button>
+    </header>
+    <div id="catalog" class="catalog">
+    </div>
   </body>
   <script>
     const username = "<%= username %>";
