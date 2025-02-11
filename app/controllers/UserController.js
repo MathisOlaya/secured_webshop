@@ -8,16 +8,16 @@ dotenv.config({ path: path.resolve(__dirname, "../.env") });
 //create connection with db
 const db = mysql.createConnection({
   host: "localhost",
-  user: "root",
-  password: "root",
+  user: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
   database: "db_secured_webshop",
-  port: 6033,
+  port: process.env.DB_PORT
 });
 
 //try to connect
 db.connect((err) => {
   if (err) {
-    console.error("Erreur de connexion à la base de données:");
+    console.error("Erreur de connexion à la base de données: ", err);
     return;
   }
   console.log("Connection à la base de donnée réussie.");
