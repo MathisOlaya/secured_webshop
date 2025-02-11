@@ -1,0 +1,157 @@
+/* General body styles for catalog page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: block; /* Retourne à un modèle de mise en page normal */
+    min-height: 100vh; /* Utilise toute la hauteur de la page */
+    overflow: auto; /* Permet de faire défiler la page */
+}
+
+/* Header Styles */
+header {
+    background-color: #007bff; /* Couleur de fond bleue */
+    color: white; /* Texte en blanc */
+    padding: 15px 30px; /* Padding pour l'espacement */
+    display: flex;
+    justify-content: space-between; /* Espace entre le titre et les boutons */
+    align-items: center;
+    font-size: 1.1em;
+    position: fixed; /* Fixe le header en haut de la page */
+    top: 0;
+    width: 100%;
+    z-index: 10; /* S'assure que le header est au-dessus du contenu */
+}
+
+/* Title inside the header */
+header .title h1 {
+    margin: 0; /* Enlève les marges autour du titre */
+}
+
+/* Flex container for the buttons (Profile and Logout) */
+.header-buttons {
+    display: flex;
+    align-items: center;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 1em;
+}
+
+header a:hover {
+    text-decoration: underline;
+}
+
+/* Logout button style */
+/* Logout button style */
+#logoutHome {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 10px; /* Petit espace entre le bouton profile et logout */
+    margin-right: 40px; /* Ajoute plus d'espace pour éloigner le bouton de la barre de défilement */
+}
+
+#logoutHome:hover {
+    background-color: #c82333; /* Change la couleur au survol */
+}
+
+
+/* Margin to prevent the content from being hidden behind the header */
+body {
+    margin-top: 80px; /* Laisse de l'espace pour que le header ne cache pas le contenu */
+}
+
+/* Main heading styles */
+h2 {
+    color: #333;
+    margin: 80px 0 20px 0; /* Ajout d'un espacement en haut pour compenser la position fixe du header */
+    text-align: center;
+}
+
+/* Catalog container styles */
+.catalog {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Agrandit la taille des cartes */
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+    max-width: 1400px; /* Augmente la largeur maximale du catalogue */
+    margin: 0 auto; /* Centre la grille */
+}
+
+/* Product card styles */
+.product {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Product image styles */
+.product-image {
+    width: 100%;
+    height: 200px;
+    object-fit: contain; /* Affiche l'image en entier sans zoom ni coupure */
+    border-radius: 8px;
+}
+
+/* Product title styles */
+.product-title {
+    font-size: 1.3em; /* Augmente la taille du titre */
+    margin: 10px 0;
+    color: #333;
+}
+
+/* Product category styles */
+.product-category {
+    font-size: 1em;
+    color: #888;
+    margin: 5px 0;
+}
+
+/* Product description styles */
+.product-description {
+    font-size: 1em;
+    color: #555;
+    margin: 10px 0;
+}
+
+/* Product price styles */
+.product-price {
+    font-size: 1.2em; /* Augmente la taille du prix */
+    font-weight: bold;
+    color: #000;
+    margin: 10px 0;
+}
+
+/* Product rating styles */
+.product-rating {
+    font-size: 1em;
+    color: #f39c12;
+    margin: 10px 0;
+}
+
+/* Rating score styles */
+.rating-score {
+    font-weight: bold;
+}
+
+/* Rating count styles */
+.rating-count {
+    color: #888;
+}

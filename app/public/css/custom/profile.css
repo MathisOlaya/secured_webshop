@@ -1,0 +1,67 @@
+/* Styles généraux du corps de la page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+/* Style du titre */
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Conteneur des données de l'utilisateur */
+#userData {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 350px;
+    max-width: 100%;
+}
+
+/* Styles pour chaque ligne de donnée (Identifiant, Username, etc.) */
+#userData div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+/* Style pour les labels */
+#userData label {
+    font-weight: bold;
+    margin-right: 10px;
+    width: 120px;
+}
+
+/* Style pour les informations (texte) */
+#userData p {
+    margin: 0;
+    font-size: 1em;
+    color: #555;
+}
+
+/* Lien vers la page d'accueil */
+a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Stylisation de la page Home */
+a:visited {
+    color: #0056b3;
+}
