@@ -61,24 +61,20 @@ async function postSignUp(req, res) {
 
 async function getUserDataFromUsername(username) {
     const query = "SELECT * FROM t_users WHERE username = ?";
+    return new Promise((resolve, reject) => {
+        db.query(query, [username], (err, result) => {
+            if (err) {
+                reject(err);
+                return;
+            }
 
-    db.query(query, [username], (err, result) => {
-        if (err) {
-            return res.status(500).json({
-                message:
-                    "Erreur lors de la récupération des informations de l'utilisateur",
-                error: err,
-            });
-        }
+            if (result.length === 0) {
+                reject(new Error("Utilisateur non trouvé"));
+                return;
+            }
 
-        // Si aucun résultat n'est trouvé pour ce username
-        if (result.length === 0) {
-            return res.json({ message: "Utilisateur non trouvé" });
-        }
-
-        const user = result[0];
-
-        return user;
+            resolve(result[0]);
+        });
     });
 }
 
@@ -153,7 +149,15 @@ async function showHomePage(req, res) {
 
 async function showProfilePage(req, res) {
     const username = req.params.username;
-    res.render("profile/profile", { username });
+
+    const user = await getUserDataFromUsername(username);
+
+    res.render("profile/profile", {
+        username,
+        id: user.user_id,
+        role: user.role,
+        createdAt: user.created_at,
+    });
 }
 
 async function logOut(req, res) {

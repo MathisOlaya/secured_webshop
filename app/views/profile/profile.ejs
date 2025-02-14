@@ -13,7 +13,7 @@
                 style="display: flex; align-items: center; margin-bottom: 10px"
             >
                 <label for="id" style="margin-right: 10px">Identifiant</label>
-                <p id="id" style="margin: 0"></p>
+                <p id="id" style="margin: 0"><%= id %></p>
             </div>
 
             <div
@@ -29,7 +29,7 @@
                 style="display: flex; align-items: center; margin-bottom: 10px"
             >
                 <label for="role" style="margin-right: 10px">Rôle</label>
-                <p id="role" style="margin: 0"></p>
+                <p id="role" style="margin: 0"><%= role %></p>
             </div>
 
             <div
@@ -38,13 +38,9 @@
                 <label for="createdAt" style="margin-right: 10px"
                     >Date de création</label
                 >
-                <p id="createdAt" style="margin: 0"></p>
+                <p id="createdAt" style="margin: 0"><%= createdAt %></p>
             </div>
         </div>
         <a href="/user/<%= username %>">Home</a>
-        <script>
-            const username = "<%= username %>";
-        </script>
-        <script type="module" src="/script/profile.js"></script>
     </body>
 </html>
