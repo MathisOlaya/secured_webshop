@@ -14,7 +14,7 @@
             <div class="header-buttons">
                 <!-- If user is admin, show ahref-->
                 <% if(role == 'admin') { %>
-                <a href="goToAdminPage">Admin panel</a>
+                <a href="<%= username %>/adminboard">Admin panel</a>
                 <% } %>
                 <a href="<%= username %>/profile">Profile</a>
                 <button id="logoutHome">Se déconnecter</button>

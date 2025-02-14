@@ -4,13 +4,10 @@ const router = express.Router();
 const controller = require("../controllers/UserController");
 
 // [MIDDLE WARE] //
-const { verifyToken } = require("../middleware/Auth");
+const { verifyToken, checkAdminStatus } = require("../middleware/Auth");
 
 router.get("/:username", verifyToken, controller.showHomePage);
 router.get("/:username/profile", verifyToken, controller.showProfilePage);
-
-//return user data to profile
-router.post("/:username/getUserData", verifyToken, controller.getUserData);
 
 //logout user
 router.get("/:username/logout", verifyToken, controller.logOut);
@@ -18,5 +15,13 @@ router.get("/:username/logout", verifyToken, controller.logOut);
 //user signup nd login
 router.post("/signup", controller.postSignUp);
 router.post("/login", controller.postLogin);
+
+//admin route
+router.get(
+    "/:username/adminboard",
+    verifyToken,
+    checkAdminStatus,
+    controller.showAdminPage
+);
 
 module.exports = router;

@@ -29,4 +29,22 @@ function verifyToken(req, res, next) {
     });
 }
 
-module.exports = { verifyToken };
+function checkAdminStatus(req, res, next) {
+    const token = req.cookies.jwt_token;
+
+    if (!token) {
+        return res.status(403).json({ message: "No token provided." });
+    }
+
+    const decoded = jwt.decode(token);
+
+    if (decoded.role !== "admin") {
+        return res.status(400).json({
+            message: "Vous n'êtes pas admin. Impossible d'accéder à la page",
+        });
+    }
+
+    next();
+}
+
+module.exports = { verifyToken, checkAdminStatus };

@@ -117,26 +117,6 @@ async function postLogin(req, res) {
         return res.status(200).json({ message: "OK", ok: true, token: token });
     });
 }
-async function getUserData(req, res) {
-    const { username } = req.body;
-
-    if (!username) {
-        return res.json({ message: "No username provided" });
-    }
-
-    const query = "SELECT * FROM t_users WHERE username = ?";
-
-    db.query(query, [username], (err, result) => {
-        if (err) {
-            return res.status(500).json({
-                message: "Erreur lors de la création de l'utilisateur",
-                error: err,
-            });
-        }
-        const data = result[0];
-        return res.status(201).json({ message: "OK", ok: true, data });
-    });
-}
 
 async function showHomePage(req, res) {
     const username = req.params.username;
@@ -158,6 +138,10 @@ async function showProfilePage(req, res) {
         role: user.role,
         createdAt: user.created_at,
     });
+}
+
+async function showAdminPage(req, res) {
+    res.render("admin/admin");
 }
 
 async function logOut(req, res) {
@@ -225,8 +209,8 @@ function generateRandomString(length) {
 module.exports = {
     showHomePage,
     showProfilePage,
+    showAdminPage,
     postSignUp,
     postLogin,
-    getUserData,
     logOut,
 };
