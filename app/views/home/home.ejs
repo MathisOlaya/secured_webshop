@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
-    <link rel="stylesheet" href="/css/custom/home.css" />
-  </head>
-  <body>
-    <header>
-      <div class="title">
-        <h1>Bienvenue <%= username %> !</h1>
-      </div>
-      <div class="header-buttons">
-        <a href="<%= username %>/profile">Profile</a>
-        <button id="logoutHome">Se déconnecter</button>
-    </div>
-    </header>
-    <div id="catalog" class="catalog">
-    </div>
-  </body>
-  <script>
-    const username = "<%= username %>";
-  </script>
-  <script type="module" src="/script/home.js"></script>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Home</title>
+        <link rel="stylesheet" href="/css/custom/home.css" />
+    </head>
+    <body>
+        <header>
+            <div class="title">
+                <h1>Bienvenue <%= username %> !</h1>
+            </div>
+            <div class="header-buttons">
+                <!-- If user is admin, show ahref-->
+                <% if(role == 'admin') { %>
+                <a href="goToAdminPage">Admin panel</a>
+                <% } %>
+                <a href="<%= username %>/profile">Profile</a>
+                <button id="logoutHome">Se déconnecter</button>
+            </div>
+        </header>
+        <div id="catalog" class="catalog"></div>
+    </body>
+    <script>
+        const username = "<%= username %>";
+    </script>
+    <script type="module" src="/script/home.js"></script>
 </html>
