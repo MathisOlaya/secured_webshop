@@ -26,8 +26,12 @@ document.getElementById("submitSignup").addEventListener("click", async () => {
     //get result
     const data = await response.json();
 
-    if (data.ok) {
-      window.location.href = `/user/${username}`;
+    if (response.ok) {
+      if (data.ok) {
+        window.location.href = `/user/${username}`;
+      }
+    } else {
+      alert(data.message);
     }
   } catch {
     alert("Impossible d'accéder à la route spécifiée.");
