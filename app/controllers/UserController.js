@@ -2,6 +2,7 @@ const mysql = require("mysql2");
 const jwt = require("jsonwebtoken");
 const path = require("path");
 const dotenv = require("dotenv");
+const { resolve } = require("dns");
 
 dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
@@ -157,6 +158,9 @@ async function showProfilePage(req, res) {
 
   const user = await getUserDataFromUsername(username);
 
+  //change creation date format
+  user.created_at = changeDateFormat(user.created_at);
+
   res.render("profile/profile", {
     username,
     id: user.user_id,
@@ -164,9 +168,66 @@ async function showProfilePage(req, res) {
     createdAt: user.created_at,
   });
 }
+async function searchUserFromInput(username) {
+  const query = "SELECT * FROM t_users WHERE username LIKE ?";
+
+  return new Promise((resolve, reject) => {
+    db.query(query, [`%${username}%`], (err, res) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(res);
+    });
+  });
+}
+
+async function getAllUsersData() {
+  const query = "SELECT * FROM t_users";
+
+  return new Promise((resolve, reject) => {
+    db.query(query, (err, res) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(res);
+      }
+    });
+  });
+}
 
 async function showAdminPage(req, res) {
-  res.render("admin/admin");
+  const username = req.params.username;
+
+  //query?
+  const usernameParam = req.query.username;
+
+  let users = await getAllUsersData();
+
+  if (usernameParam) {
+    users = await searchUserFromInput(usernameParam);
+  }
+
+  //change date format
+  users.forEach((usr) => {
+    usr.created_at = changeDateFormat(usr.created_at);
+  });
+
+  res.render("admin/admin", { username, users });
+}
+
+function changeDateFormat(date) {
+  const data = new Date(date);
+  const formattedDateTime = data.toLocaleString("fr-FR", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+  });
+
+  return formattedDateTime;
 }
 
 async function logOut(req, res) {
@@ -210,8 +271,10 @@ function hash(input) {
   let pswd = "";
 
   for (let letter = 0; letter < valueToHash.length; letter++) {
-    const asciiCode =
-      Math.floor(((valueToHash.charCodeAt(letter) % 54) * 6) / 2) % 256;
+    const ascii =
+      Math.floor(((valueToHash.charCodeAt(letter) % 54) * 6) / 2) % 126;
+    const asciiCode = ((ascii + 32) % 95) + 32; // Plage 32-126 (inclus)
+
     pswd += String.fromCharCode(asciiCode);
   }
   return { pswd, salt };

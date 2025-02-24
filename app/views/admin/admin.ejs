@@ -1,15 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Administrateur</title>
-        <link rel="stylesheet" href="/css/custom/home.css" />
-    </head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Administrateur</title>
+    <link rel="stylesheet" href="/css/custom/admin.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Page admin</h1>
+      <a href="/user/<%= username %>">Home</a>
+    </header>
     <body>
-        <header>
-            <h1>Page admin</h1>
-            <a href="">Home</a>
-        </header>
+      <form action="/user/<%= username %>/adminboard" method="get">
+        <input
+          type="text"
+          name="username"
+          placeholder="Entrer un nom d'utilisateur"
+        />
+        <button type="submit">Chercher</button>
+      </form>
+      <a id="reset" href="/user/<%= username %>/adminboard">Réinitialiser</a>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nom d'utilisateur</th>
+            <th>Rôle</th>
+            <th>Date de création</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% users.forEach((user) => { %>
+          <tr>
+            <td><%= user.user_id %></td>
+            <td><%= user.username %></td>
+            <td><%= user.role %></td>
+            <td><%= user.created_at %></td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
     </body>
+  </body>
 </html>

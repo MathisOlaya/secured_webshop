@@ -1,0 +1,167 @@
+/* General body styles for the admin page */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+  display: block;
+  min-height: 100vh;
+  overflow: auto;
+}
+
+/* Header Styles */
+header {
+  background-color: #007bff; /* Blue background */
+  color: white; /* White text */
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between; /* Space between title and links */
+  align-items: center;
+  font-size: 1.2em; /* Slightly larger font size for the admin page */
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+  box-sizing: border-box; /* Ensures padding is included in the element's width */
+}
+
+/* Title inside the header */
+header h1 {
+  margin: 0;
+}
+
+/* Link styles inside the header */
+header a {
+  color: white;
+  text-decoration: none;
+  font-size: 1em;
+  margin-left: 20px; /* Adds some space between the title and the link */
+}
+
+header a:hover {
+  text-decoration: underline;
+}
+
+/* Margin to prevent the content from being hidden behind the header */
+body {
+  margin-top: 80px; /* Space for the fixed header */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  max-width: 1200px; /* Limite la largeur de la table */
+  margin: 20px auto; /* Centrer la table avec un peu d'espace autour */
+  border-collapse: collapse; /* Fusionne les bordures */
+  background-color: #fff; /* Fond blanc pour la table */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre légère pour la table */
+}
+
+/* Table Header Styles */
+thead {
+  background-color: #007bff; /* Fond bleu pour l'en-tête */
+  color: white; /* Texte blanc */
+  font-weight: bold; /* Texte en gras */
+}
+
+/* Table Header Cell Styles */
+th {
+  padding: 12px 15px; /* Espacement autour des en-têtes */
+  text-align: left; /* Alignement à gauche pour les en-têtes */
+  font-size: 1.1em; /* Augmente légèrement la taille de la police */
+}
+
+/* Table Body Row Styles */
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9; /* Couleur de fond alternée pour les lignes paires */
+}
+
+tbody tr:hover {
+  background-color: #f1f1f1; /* Fond gris clair au survol de la ligne */
+}
+
+/* Table Data Cell Styles */
+td {
+  padding: 12px 15px; /* Espacement autour des cellules */
+  text-align: left; /* Alignement du texte à gauche */
+  font-size: 1em; /* Taille de police standard */
+  border-bottom: 1px solid #ddd; /* Bordure subtile sous chaque ligne */
+}
+
+/* Table Footer Styles (optional, if you plan to add footer) */
+tfoot {
+  background-color: #f0f0f0; /* Fond gris clair pour le bas de la table */
+  font-weight: bold; /* Texte en gras */
+}
+
+tfoot td {
+  padding: 12px 15px;
+  text-align: left;
+  border-top: 1px solid #ddd;
+}
+
+/* Styling for empty table (if no users) */
+table.empty {
+  text-align: center;
+}
+
+table.empty td {
+  padding: 20px;
+  color: #888;
+  font-style: italic;
+}
+/* Style du formulaire de recherche */
+form {
+  display: flex;
+  justify-content: center; /* Centre le formulaire horizontalement */
+  align-items: center;
+  margin-top: 20px;
+}
+
+form input[type="text"] {
+  padding: 10px 15px; /* Augmenter l'espacement interne */
+  font-size: 1.1em; /* Augmenter la taille du texte dans le champ */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px; /* Espace entre le champ de texte et le bouton */
+  width: 300px; /* Augmenter la largeur du champ de texte */
+}
+
+/* Style du bouton de soumission */
+form button {
+  padding: 12px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #0056b3; /* Change la couleur lors du survol */
+}
+/* Style du lien Réinitialiser */
+#reset {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 1em;
+  color: #007bff;
+  text-decoration: none;
+  text-align: center;
+  padding: 8px 20px; /* Taille du bouton augmentée */
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin-left: 10px; /* Ajoute un petit espace entre le bouton et le lien */
+}
+
+#reset:hover {
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+}
