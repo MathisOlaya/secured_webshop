@@ -35,7 +35,15 @@ async function postSignUp(req, res) {
   }
 
   //hash password
-  const hash_data = hash(password);
+  let hash_data = {};
+
+  if (process.env.USING_BCRYPT) {
+    //Hasher avec BCRYPT
+    hash_data.pswd = password;
+    hash_data.salt = "";
+  } else {
+    hash_data = hash(password);
+  }
 
   const query =
     "INSERT INTO t_users (username, password_hash, salt) VALUES (?, ?, ?);";
@@ -127,10 +135,19 @@ async function postLogin(req, res) {
     const salt = resultat[0].salt;
     const role = resultat[0].role;
 
-    if (!compareHash(password, db_password_hash, salt)) {
-      return res.status(400).json({
-        message: "Le mot de passe ne correspond pas",
-      });
+    if (salt.length < 1) {
+      //its bcrypt
+      if (db_password_hash !== password) {
+        return res.status(400).json({
+          message: "Le mot de passe ne correspond pas",
+        });
+      }
+    } else {
+      if (!compareHash(password, db_password_hash, salt)) {
+        return res.status(400).json({
+          message: "Le mot de passe ne correspond pas",
+        });
+      }
     }
 
     //ok and create and return jwt token
@@ -252,8 +269,10 @@ function compareHash(usrPswd, dbPswd, salt) {
   let res = "";
 
   for (let letter = 0; letter < userPassword.length; letter++) {
-    const asciiCode =
-      Math.floor(((userPassword.charCodeAt(letter) % 54) * 6) / 2) % 256;
+    const ascii =
+      Math.floor(((userPassword.charCodeAt(letter) % 54) * 6) / 2) % 126;
+    const asciiCode = ((ascii + 32) % 95) + 32; // Plage 32-126 (inclus)
+
     res += String.fromCharCode(asciiCode);
   }
 
