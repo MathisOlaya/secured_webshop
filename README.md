@@ -21,15 +21,16 @@ Pour lancer ce projet, il est nécessaire d'effectuer quelques opérations.
    ```bash
    docker exec -i db_container mysql -u root -proot < ./db/db_secured_webshop.sql
    ```
-6) Changer de dossier avec la commande :
-   ```bash
-   cd app
-   ```
-7) Lancer le serveur avec la commande :
+6) Se rendre dans le dossier app
+7) Dupliquer le fichier .env.example et le renommer en .env
+8) Ouvrir le fichier .env, et y rentrer une clé secrète aléatoire dans 'JWT_SECRET_KEY'
+9) Facultatif : Vous pouvez également choisir l'utilisation de BCRYPT ou pas.
+10) Ouvrir un cmd dans le dossier actuel (app)
+11) Lancer le serveur avec la commande :
    ```bash
    npm start
    ```
-8) Créer un utilisateur ou connecté vous avec l'administrateur :
+12) Créer un utilisateur ou connecté vous avec l'administrateur :
    ```json
    {
       "username": "zraidex",
