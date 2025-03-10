@@ -3,7 +3,6 @@
 /.idea/
 *.env
 *.doc
-*.docx
 *.xls
 *.xlsx
 *.pem
