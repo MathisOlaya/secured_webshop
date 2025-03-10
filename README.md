@@ -11,7 +11,7 @@ Ce repository est utilisé dans le cadre du projet Secure Webshop pour le cours 
 - ✔ Page administrateur  
 - 🧔 Page Profile
   
-## 🔧 Configuration
+## 🔧 Configuration avec Dockerisation
 Pour lancer ce projet, il est nécessaire d'effectuer quelques opérations.
 
 1) Installer le ZIP du projet et le décompresser
@@ -50,6 +50,39 @@ Pour lancer ce projet, il est nécessaire d'effectuer quelques opérations.
    }
    ```
 14) Pour avoir un admin, il faut changer manuellement dans la base de données
+
+## 🛠️ Configuration sans Dockerisation
+1) Si la dockerisation ne fonctionne pas (1 chance sur 2) suiver ces étapes
+2) Cloner le projet
+3) Mettre à jour les variables d'environnemts à partir du .example dans le dossier /app
+4) Générer les certs comme décris ci-dessus
+5) Se rendre dans la racine du dossier du projet et exécuter
+   ```bash
+   docker-compose up -d
+   ```
+6) Ne tenez pas compte des erreurs qui peuvent subvenir car celles-ci proviennent de la dockerisation
+7) Se render dans app/controllers/userController.mjs et changer les ligne :
+   ```javascript
+    const db = mysql.createConnection({
+     host: "db",
+     user: process.env.DB_USERNAME,
+     password: process.env.DB_PASSWORD,
+     port: process.env.DB_PORT,
+   });
+   ```
+   EN ⏭️
+   ```javascript
+    const db = mysql.createConnection({
+     host: "localhost",
+     user: process.env.DB_USERNAME,
+     password: process.env.DB_PASSWORD,
+     port: process.env.DB_PORT,
+   });
+8) Se rendre dans /app et ouvrir un CMD et exécuter ces commandes :
+   ```bash
+   npm i
+   npm start
+   ```
 
 ## 📃 Page de démarrage
 ```url
