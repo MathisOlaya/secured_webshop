@@ -21,8 +21,6 @@ services:
     phpmyadmin:
         image: phpmyadmin:5.2.0
         container_name: pma_container
-        links:
-            - db
         environment:
             PMA_HOST: db
             PMA_PORT: 3306
@@ -55,6 +53,3 @@ services:
 # The database will be persistent among containers restarts.
 volumes:
     dbdata:
-
-
-  

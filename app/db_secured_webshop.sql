@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db:3306
--- Généré le : lun. 03 mars 2025 à 11:49
+-- Généré le : lun. 10 mars 2025 à 12:29
 -- Version du serveur : 8.0.30
 -- Version de PHP : 8.0.27
 
@@ -17,12 +17,11 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
-CREATE DATABASE IF NOT EXISTS db_secured_webshop;
-USE db_secured_webshop;
-
 --
 -- Base de données : `db_secured_webshop`
 --
+CREATE DATABASE IF NOT EXISTS `db_secured_webshop` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+USE `db_secured_webshop`;
 
 -- --------------------------------------------------------
 
@@ -32,10 +31,10 @@ USE db_secured_webshop;
 
 CREATE TABLE `t_users` (
   `user_id` int NOT NULL,
-  `username` varchar(40) COLLATE utf8mb4_general_ci NOT NULL,
-  `password_hash` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `username` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `password_hash` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `salt` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `role` enum('user','admin') COLLATE utf8mb4_general_ci DEFAULT 'user',
+  `role` enum('user','admin') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT 'user',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

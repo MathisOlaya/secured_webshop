@@ -3,26 +3,51 @@ const jwt = require("jsonwebtoken");
 const path = require("path");
 const dotenv = require("dotenv");
 const bcrypt = require("bcrypt");
+const fs = require('fs');
 
 dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
-//create connection with db
+// Vérifier si les variables d'environnement nécessaires sont présentes
+if (!process.env.DB_USERNAME || !process.env.DB_PASSWORD || !process.env.DB_PORT || !process.env.DB_NAME) {
+  console.error("Les variables d'environnement DB_USERNAME, DB_PASSWORD, DB_PORT, et DB_NAME sont requises.");
+  process.exit(1);
+}
+
+// Créer la connexion à MySQL sans spécifier la base de données
 const db = mysql.createConnection({
-  host: "localhost",
+  host: "db",
   user: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
-  database: "db_secured_webshop",
   port: process.env.DB_PORT,
 });
 
-//try to connect
+// Essayer de se connecter et de s'assurer que la base de données existe
 db.connect((err) => {
   if (err) {
     console.error("Erreur de connexion à la base de données: ", err);
     return;
   }
   console.log("Connection à la base de donnée réussie.");
+
+  // Vérifier si la base de données existe, sinon la créer
+  db.query(`CREATE DATABASE IF NOT EXISTS ${process.env.DB_NAME};`, (err, result) => {
+    if (err) {
+      console.error("Erreur lors de la création de la base de données : ", err);
+      return;
+    }
+    console.log(`Base de données ${process.env.DB_NAME} prête.`);
+    
+    // Sélectionner la base de données après sa création
+    db.changeUser({ database: process.env.DB_NAME }, (err) => {
+      if (err) {
+        console.error("Erreur lors de la connexion à la base de données : ", err);
+        return;
+      }
+      console.log(`Connecté à la base de données ${process.env.DB_NAME}`);
+    });
+  });
 });
+
 
 async function postSignUp(req, res) {
   const { username, password } = req.body;
