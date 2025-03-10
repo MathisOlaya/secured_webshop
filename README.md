@@ -38,8 +38,11 @@ Pour lancer ce projet, il est nécessaire d'effectuer quelques opérations.
    ```bash
    docker exec -i db_container mysql -u root -proot db_secured_webshop < ./db/db_secured_webshop.sql
    ```
-12) Ouvrir un cmd dans le dossier actuel (app)
-13) Créer un utilisateur ou se connecter avec l'admin avec ces informations :
+12) Se rendre sur :
+    ```url
+    https://localhost
+    ```
+14) Créer un utilisateur ou se connecter avec l'admin avec ces informations :
    ```json
    {
       "username": "zraidex",
