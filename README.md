@@ -36,7 +36,7 @@ Pour lancer ce projet, il est nécessaire d'effectuer quelques opérations.
 10) 🛑 Si une erreur de connexion se produit, relancer les conteneurs
 11) Charger le base de donnée grâce à cette commande 🛑 ATTENTION : Si vous avez changé le nom de la DB dans les variables d'environements, change le ICI :
    ```bash
-   docker exec -i db_container mysql -u root -proot < ./db/db_secured_webshop.sql
+   docker exec -i db_container mysql -u root -proot db_secured_webshop < ./db/db_secured_webshop.sql
    ```
 12) Ouvrir un cmd dans le dossier actuel (app)
 13) Créer un utilisateur ou se connecter avec l'admin avec ces informations :
