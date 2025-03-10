@@ -47,7 +47,7 @@ Pour lancer ce projet, il est nécessaire d'effectuer quelques opérations.
    ```bash
    npm start
    ```
-12) Créer un utilisateur :
+12) Créer un utilisateur ou se connecter avec l'admin avec ces informations :
    ```json
    {
       "username": "zraidex",
