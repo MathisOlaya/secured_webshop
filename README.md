@@ -18,7 +18,7 @@ Pour lancer ce projet, il est nécessaire d'effectuer quelques opérations.
 2) Ouvrir le dossier /app et cloner le fichier .env.example et le renommer en .env
 3) Ajouter les valeurs qu'on y souhaite (laisser root/root pour le login de la db et ne pas changer le PORT!)
 4) Encore dans /app créer un dossier creds si non existant
-5) Et exécuter ces commandes dans bash
+5) Et exécuter ces commandes dans bash dans le dossier creds
    ```bash
     openssl genrsa -out key.pem 2048
  
@@ -39,18 +39,14 @@ Pour lancer ce projet, il est nécessaire d'effectuer quelques opérations.
    docker exec -i db_container mysql -u root -proot < ./db/db_secured_webshop.sql
    ```
 12) Ouvrir un cmd dans le dossier actuel (app)
-13) Lancer le serveur avec la commande :
-   ```bash
-   npm start
-   ```
-14) Créer un utilisateur ou se connecter avec l'admin avec ces informations :
+13) Créer un utilisateur ou se connecter avec l'admin avec ces informations :
    ```json
    {
       "username": "zraidex",
       "password": "onglier"
    }
    ```
-15) Pour avoir un admin, il faut changer manuellement dans la base de données
+14) Pour avoir un admin, il faut changer manuellement dans la base de données
 
 ## 📃 Page de démarrage
 ```url
