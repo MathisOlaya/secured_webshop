@@ -17,7 +17,7 @@ Pour lancer ce projet, il est nécessaire d'effectuer quelques opérations.
 1) Installer le ZIP du projet et le décompresser
 2) Ouvrir le dossier /app et cloner le fichier .env.example et le renommer en .env
 3) Ajouter les valeurs qu'on y souhaite (laisser root/root pour le login de la db et ne pas changer le PORT!)
-4) Encore dans /app créer un dossier creds si non existant
+4) Encore dans /app créer un dossier certs si non existant
 5) Et exécuter ces commandes dans bash dans le dossier creds
    ```bash
     openssl genrsa -out key.pem 2048
