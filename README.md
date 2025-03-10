@@ -16,7 +16,7 @@ Pour lancer ce projet, il est nécessaire d'effectuer quelques opérations.
 
 1) Installer le ZIP du projet et le décompresser
 2) Ouvrir le dossier /app et cloner le fichier .env.example et le renommer en .env
-3) Ajouter les valeurs qu'on y souhaite (laisser root/root pour le login de la db)
+3) Ajouter les valeurs qu'on y souhaite (laisser root/root pour le login de la db et ne pas changer le PORT!)
 4) Encore dans /app créer un dossier creds si non existant
 5) Et exécuter ces commandes dans bash
    ```bash
@@ -38,23 +38,19 @@ Pour lancer ce projet, il est nécessaire d'effectuer quelques opérations.
    ```bash
    docker exec -i db_container mysql -u root -proot < ./db/db_secured_webshop.sql
    ```
-11) Se rendre dans le dossier app
-12) Dupliquer le fichier .env.example et le renommer en .env
-13) Ouvrir le fichier .env, et y rentrer une clé secrète aléatoire dans 'JWT_SECRET_KEY'
-14) Facultatif : Vous pouvez également choisir l'utilisation de BCRYPT ou pas.
-15) Ouvrir un cmd dans le dossier actuel (app)
-16) Lancer le serveur avec la commande :
+12) Ouvrir un cmd dans le dossier actuel (app)
+13) Lancer le serveur avec la commande :
    ```bash
    npm start
    ```
-12) Créer un utilisateur :
+14) Créer un utilisateur ou se connecter avec l'admin avec ces informations :
    ```json
    {
       "username": "zraidex",
       "password": "onglier"
    }
    ```
-13) Pour avoir un admin, il faut changer manuellement dans la base de données
+15) Pour avoir un admin, il faut changer manuellement dans la base de données
 
 ## 📃 Page de démarrage
 ```url
