@@ -66,10 +66,11 @@ Pour lancer ce projet, il est nécessaire d'effectuer quelques opérations.
    ```bash
    npm start
    ```
+   🛑 Vérifier que le port 443 n'est pas utilisé.
 9. Fini !🟢 Vous pouvez maintenant créer un compte ou se connecter avec le compte administrateur :
    ```javascript
    "username": "zraidex",
-   "password": "ongliade",
+   "password": "onglier",
    ```
 
 ## 📃 Page de démarrage
