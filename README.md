@@ -22,7 +22,7 @@ Pour lancer ce projet, il est nécessaire d'effectuer quelques opérations.
    ```bash
    git clone https://github.com/MathisOlaya/secured_webshop
    ```
-2. Ouvrer le projet à la racine et ouvrer un CMD
+2. Ouvrer le projet à la racine et ouvrer un GIT BASH
 3. Exécuter ces commandes suivantes :
    ```bash
    cd app
@@ -32,7 +32,11 @@ Pour lancer ce projet, il est nécessaire d'effectuer quelques opérations.
    ```bash
    mkdir certs
    ```
-
+   
+   ```bash
+   cd certs
+   ```
+   
    ```bash
    openssl genrsa -out key.pem 2048
    ```
