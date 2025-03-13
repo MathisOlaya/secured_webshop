@@ -17,24 +17,26 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
---
--- Base de données : `db_secured_webshop`
---
-
 -- --------------------------------------------------------
 
 --
 -- Structure de la table `t_users`
 --
 
-CREATE TABLE `t_users` (
-  `user_id` int NOT NULL,
-  `username` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `password_hash` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `salt` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `role` enum('user','admin') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT 'user',
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+-- Supprimer la table si elle existe
+DROP TABLE IF EXISTS `t_users`;
+
+-- Création de la table
+CREATE TABLE IF NOT EXISTS `t_users` (
+  `user_id` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `password_hash` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `salt` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `role` ENUM('user','admin') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT 'user',
+  `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 --
 -- Déchargement des données de la table `t_users`
@@ -66,7 +68,6 @@ INSERT INTO `t_users` (`user_id`, `username`, `password_hash`, `salt`, `role`, `
 -- Index pour la table `t_users`
 --
 ALTER TABLE `t_users`
-  ADD PRIMARY KEY (`user_id`),
   ADD UNIQUE KEY `username` (`username`);
 
 --

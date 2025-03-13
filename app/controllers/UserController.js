@@ -3,22 +3,30 @@ const jwt = require("jsonwebtoken");
 const path = require("path");
 const dotenv = require("dotenv");
 const bcrypt = require("bcrypt");
-const fs = require('fs');
+const fs = require("fs");
 
 dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
 // Vérifier si les variables d'environnement nécessaires sont présentes
-if (!process.env.DB_USERNAME || !process.env.DB_PASSWORD || !process.env.DB_PORT || !process.env.DB_NAME) {
-  console.error("Les variables d'environnement DB_USERNAME, DB_PASSWORD, DB_PORT, et DB_NAME sont requises.");
+if (
+  !process.env.DB_USERNAME ||
+  !process.env.DB_PASSWORD ||
+  !process.env.DB_PORT ||
+  !process.env.DB_NAME
+) {
+  console.error(
+    "Les variables d'environnement DB_USERNAME, DB_PASSWORD, DB_PORT, et DB_NAME sont requises."
+  );
   process.exit(1);
 }
 
 // Créer la connexion à MySQL sans spécifier la base de données
 const db = mysql.createConnection({
-  host: "db",
+  host: "localhost",
   user: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   port: process.env.DB_PORT,
+  multipleStatements: true,
 });
 
 // Essayer de se connecter et de s'assurer que la base de données existe
@@ -30,24 +38,43 @@ db.connect((err) => {
   console.log("Connection à la base de donnée réussie.");
 
   // Vérifier si la base de données existe, sinon la créer
-  db.query(`CREATE DATABASE IF NOT EXISTS ${process.env.DB_NAME};`, (err, result) => {
-    if (err) {
-      console.error("Erreur lors de la création de la base de données : ", err);
-      return;
-    }
-    console.log(`Base de données ${process.env.DB_NAME} prête.`);
-    
-    // Sélectionner la base de données après sa création
-    db.changeUser({ database: process.env.DB_NAME }, (err) => {
+  db.query(
+    `CREATE DATABASE IF NOT EXISTS ${process.env.DB_NAME};`,
+    (err, result) => {
       if (err) {
-        console.error("Erreur lors de la connexion à la base de données : ", err);
+        console.error(
+          "Erreur lors de la création de la base de données : ",
+          err
+        );
         return;
       }
-      console.log(`Connecté à la base de données ${process.env.DB_NAME}`);
-    });
-  });
-});
+      console.log(`Base de données ${process.env.DB_NAME} prête.`);
 
+      // Sélectionner la base de données après sa création
+      db.changeUser({ database: process.env.DB_NAME }, (err) => {
+        if (err) {
+          console.error(
+            "Erreur lors de la connexion à la base de données : ",
+            err
+          );
+          return;
+        }
+        console.log(`Connecté à la base de données ${process.env.DB_NAME}`);
+      });
+
+      // Insérer le fichier de données SQL
+      const sqlFile = fs.readFileSync("./db/db_secured_webshop.sql", "utf-8");
+
+      db.query(sqlFile, (err, results) => {
+        if (err) {
+          console.error("Erreur lors de l'importation SQL !", err);
+        } else {
+          console.log("Importations des données SQL réussie !");
+        }
+      });
+    }
+  );
+});
 
 async function postSignUp(req, res) {
   const { username, password } = req.body;
