@@ -25,7 +25,7 @@ Pour lancer ce projet, il est nécessaire d'effectuer quelques opérations.
 2. Ouvrer le projet à la racine et ouvrer un CMD
 3. Exécuter ces commandes suivantes :
    ```bash
-   cd /app
+   cd app
    ```
 4. Puis pour installer les certifications
 
